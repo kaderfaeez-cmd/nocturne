@@ -1,15 +1,17 @@
 # NOCTURNE
 
-**Local-first AI creative studio.** Cinematic images, animated hero backgrounds, AI-written React components and a prompt direction engine — one dark room, running entirely on your machine.
+**Local-first AI creative studio.** Cinematic images, animated hero backgrounds, AI-written React components and a prompt direction engine — one dark room.
 
-> Private tool. No deploy target, no telemetry, no cloud storage. Generated assets live on disk.
+**Live demo:** https://nocturne-ten-mocha.vercel.app
+
+> Full experience is local: generated assets persist to disk and the settings panel stores your keys. The deployed instance reads keys from env vars and returns images as ephemeral data URLs (Vercel's filesystem is read-only) — library persistence is local-only.
 
 ## Modules
 
 | Module | What it does |
 |--------|--------------|
 | **Prompt Engine** | Composes shots from subject + style preset (8 curated directions) + camera angle + lighting setup. One-click AI enhancement rewrites it into a director-grade prompt. |
-| **Image Studio** | Generates images via Gemini (`gemini-2.5-flash-image`), saves PNGs to `public/generated/`, gallery with detail view, side-by-side compare, download, delete. |
+| **Image Studio** | Generates images via Gemini (`gemini-3.1-flash-image`) with automatic fallback to Pollinations (keyless), saves to `public/generated/`, gallery with detail view, side-by-side compare, download, delete. Note: Gemini image models require a billing-enabled key — the free tier only covers text. |
 | **Motion Engine** | Four parametrized real-time hero backgrounds (Aurora, Particle Field, Signal Waves, Horizon Grid). Tune hue/speed/intensity live, export as a self-contained React component. |
 | **Code Generator** | Claude writes React Three Fiber scenes or hero sections from a description. Rendered live in a sandboxed iframe (esm.sh + Babel), iterative refine loop, copy/save. |
 | **Library** | Unified local asset store — images, components, motion presets. Search across prompts and tags, filter by type. |
