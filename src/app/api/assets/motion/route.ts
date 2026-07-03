@@ -19,6 +19,17 @@ export async function POST(request: Request) {
     );
   }
 
+  if (process.env.VERCEL) {
+    return NextResponse.json(
+      {
+        success: false,
+        data: null,
+        error: "Library persistence is local-only. Use Copy instead.",
+      },
+      { status: 501 },
+    );
+  }
+
   const asset = await saveTextAsset({
     type: "motion",
     content: body.content,

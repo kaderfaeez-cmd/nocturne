@@ -20,7 +20,7 @@ const DEFAULT_CONFIG: StudioConfig = {
   anthropicApiKey: "",
   geminiApiKey: "",
   textModel: "claude-sonnet-5",
-  imageModel: "gemini-2.5-flash-image",
+  imageModel: "gemini-3.1-flash-image",
 };
 
 export async function readConfig(): Promise<StudioConfig> {

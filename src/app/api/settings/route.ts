@@ -26,6 +26,17 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  if (process.env.VERCEL) {
+    return NextResponse.json(
+      {
+        success: false,
+        data: null,
+        error:
+          "This deployed instance reads keys from Vercel environment variables (GEMINI_API_KEY / ANTHROPIC_API_KEY). Run locally to use the settings panel.",
+      },
+      { status: 501 },
+    );
+  }
   let body: unknown;
   try {
     body = await request.json();

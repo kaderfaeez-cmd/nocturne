@@ -33,6 +33,25 @@ export async function POST(request: Request) {
 
   try {
     const image = await generateImage(prompt);
+
+    // Vercel's filesystem is read-only — return an ephemeral data-URL
+    // asset instead of persisting to disk.
+    if (process.env.VERCEL) {
+      return NextResponse.json({
+        success: true,
+        data: {
+          id: crypto.randomUUID(),
+          type: "image",
+          url: `data:${image.mimeType};base64,${image.base64}`,
+          content: null,
+          prompt,
+          tags,
+          createdAt: new Date().toISOString(),
+        },
+        error: null,
+      });
+    }
+
     const asset = await saveImageAsset({
       base64: image.base64,
       mimeType: image.mimeType,
