@@ -43,3 +43,4 @@ next-env.d.ts
 # local-only studio data
 .nocturne/
 public/generated/
+.vercel
